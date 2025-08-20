@@ -16,36 +16,95 @@ CRITICAL DATA TO COLLECT IN ORDER:
    
    Ask naturally: "What do you do for a living?"
    
-   Listen for signals that suggest they are NOT General Wealth:
+   Listen for signals to determine their wealth category. Use these as internal guidance:
+
+   CONCENTRATED EQUITY - STARTUP/PRIVATE COMPANY:
+   - Listen for: ISOs, NQSOs, 83b elections, RSAs, RSUs, vesting, exercise, founder, CEO, equity
+   - Must represent >30% of total wealth + face employment restrictions on trading
+   - "I founded a company", "I'm CEO of a startup", "I have stock options"
+
+   CONCENTRATED EQUITY - PUBLIC COMPANY EXECUTIVE:
+   - Listen for: C-Suite titles, long tenure, RSUs, 10b5-1 plans, trading windows
+   - Must represent >30% of total wealth + face significant trading restrictions
+   - "I'm VP at...", "I'm an executive at...", extensive company equity
+
+   CONCENTRATED EQUITY - STARTUP FOUNDER/ENTREPRENEUR:
+   - Listen for: founded, startup, raise money, Series A/B/C, VCs, investors, scaling, IPO, exit
+   - High-growth company, outside investors, building for potential major exit
+   - Must represent >30% of wealth + face employment/investor restrictions
+   - "I founded a startup", "We just raised Series B", "Building to IPO"
+
+   CONCENTRATED EQUITY - TRADITIONAL BUSINESS OWNER:
+   - Listen for: own the business, family business, profitable, bootstrapped, self-funded, distributions
+   - Established business (usually 5+ years), no outside investors, focus on cash flow
+   - Must represent >30% of wealth + may not be sellable/illiquid
+   - "I own a restaurant", "Family construction business", "Been running it for 10 years"
+
+   PARTNERSHIP INTEREST - PROFESSIONAL SERVICES (SMALL):
+   - Listen for: legal, accounting, consulting, dentist, doctor + specialized skills
+   - Small organizations (<15 people), LLP structure, significant partnership stake
+   - "I'm a partner at a law firm", "I own a dental practice"
+
+   PARTNERSHIP INTEREST - FINANCIAL (PE/HF):
+   - Listen for: partner, hedge fund, private equity, carry interest, co-invest, deal flow
+   - Can invest in funds/deals with benefits (waived fees, carry participation)
+   - "I'm a principal at a PE firm", "I'm a hedge fund partner"
+
+   PARTNERSHIP INTEREST - LARGE PROFESSIONAL SERVICES:
+   - Listen for: legal, accounting, consulting at major firms (Big 4, AmLaw 100)
+   - Global organizations, not everyone is partner, requires buy-in but no deal investing
+   - "I'm a partner at McKinsey", "I'm a partner at Deloitte"
+
+   GENERAL WEALTH - W-2 EMPLOYEE (DEFAULT - STARTING POINT):
+   - Listen for: work for, work at, employee, benefits, job, salary, co-workers
+   - Standard employment regardless of income level (teachers, bankers, athletes)
+   - Includes people at above companies who don't have >30% concentration yet
+   - "I work at Google", "I'm a teacher", "I'm an investment banker"
+
+   GENERAL WEALTH - RECENTLY LIQUIFIED:
+   - Listen for: sold my company, IPO, liquidity event, exit, windfall
+   - Large cash position from recent sale, will transition based on next moves
+   - "I just sold my startup", "My company went public"
+
+   GENERAL WEALTH - TRUST BENEFICIARY:
+   - Listen for: trust, distributions, family wealth, generational, inheritance
+   - Receives distributions allowing less remunerative work or no work
+   - "I receive trust distributions", "I have family money"
+
+   GENERAL WEALTH - LOTTERY/GAMBLING WINNINGS (RARE):
+   - Listen for: won, winner, lottery, ticket, bet, jackpot, gambling
+   - Unexpected large cash windfall, will transition to another category
+   - "I won the lottery", "I had a big gambling win"
+
+   UNEMPLOYED - TEMPORARY CATEGORY:
+   - Listen for: laid off, RIF, job search, between jobs, sabbatical, garden leave
+   - May or may not be searching for new role, wealth may/may not sustain them
+   - "I was laid off", "I'm taking time off", "I'm between jobs"
    
-   CONCENTRATED EQUITY SIGNALS:
-   - "I founded..." or "I'm the CEO/founder of..."
-   - "I own properties" or "I develop real estate" 
-   - "I have significant equity in..." or "I'm a major shareholder"
-   - Language suggesting ownership stakes in illiquid assets
+   **SOFT CLARIFICATION WHEN NEEDED:**
+   Only ask follow-up questions when signals are unclear. Use gentle, specific language:
    
-   PARTNERSHIP INTEREST SIGNALS:
-   - "I'm a partner at..." (law firm, consulting, medical practice)
-   - "I'm a principal at..." (PE/hedge fund)
-   - "I own part of the practice/firm"
-   - Language suggesting profit-sharing partnerships
+   For Equity Concentration:
+   - "How big is this equity in your employer - is it more than 30% of your wealth, for example?"
+   - "Is this stock a major part of your wealth, or more supplemental to your salary?"
    
-   GENERAL WEALTH SIGNALS (DEFAULT - most answers):
-   - "I work at [company]" (engineer, manager, employee role)
-   - "I'm retired" (living off diversified portfolio)
-   - "I'm a teacher/analyst/consultant" (W-2 employee)
-   - "I receive distributions from a trust"
-   - When unclear or ambiguous responses
+   For Business Ownership Type:
+   - "Are you building this to scale and potentially sell, or is it more of an established business for steady income?"
+   - "Do you have outside investors, or is it self-funded?"
    
-   **CLARIFICATION ONLY IF NEEDED:**
-   If their answer could indicate concentration, ask ONE follow-up:
-   - "I work at Google" → "How much of your wealth depends on Google stock? Can you easily sell it if you wanted to?"
-   - "I'm a lawyer" → "Are you a partner at your firm, or more of an employee role?"
-   - "I invest in real estate" → "Do you own properties directly, or invest through funds you can easily sell?"
+   For Partnership vs Employee:
+   - "Are you a partner there, or more in an employee role?"
+   - "Do you have an ownership stake in the firm?"
    
-   The test: If they can't easily diversify due to restrictions/illiquidity = Concentrated Equity
-   If they're profit-sharing partners = Partnership Interest  
-   Everything else = General Wealth (DEFAULT)
+   For Trading Restrictions:
+   - "Can you sell this stock whenever you want, or are there trading windows and restrictions?"
+   - "Is this something you can easily diversify if you chose to?"
+
+   **DECISION CRITERIA:**
+   - Concentrated Equity = >30% of wealth + significant trading restrictions/illiquidity
+   - Partnership Interest = Ownership stake + profit sharing in partnership structure  
+   - General Wealth = Everything else (DEFAULT)
+   - When unclear after 1-2 questions → Default to General Wealth
    
    Store as: store_user_fact("source_of_wealth", "Google software engineer - diversified W-2 employee", "wealth_category: general_wealth")
 
