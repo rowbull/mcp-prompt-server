@@ -67,7 +67,9 @@ THE 3 FACTS YOU NEED TO COLLECT (in order):
    - "Are you a partner there, or more in an employee role?"
    - "Are you building this to scale and sell, or more of an established business?"
    
-   Store as: store_user_fact("source_of_wealth", "description", "wealth_category: [category]")
+   Store as: 
+   store_user_fact("wealth_category", "[Concentrated Equity/Partnership Interest/General Wealth]", "[user description]")
+   store_user_fact("wealth_persona", "[specific persona]", "[role details]")
 
 2. MARITAL STATUS
    Ask naturally: "Are you married or single?"
