@@ -3,15 +3,14 @@ import os
 
 def get_prompt_instructions(country, language, session_type, user_context):
     """
-    Get conversation instructions for US users with three-category wealth system.
-    Language/cultural handling is done in Core LLM, this focuses on conversation flow.
+    Get conversation instructions for US users with clean onboarding approach.
     """
     
     # For MVP: Only supporting US
     if country.upper() != 'US':
         return get_default_instructions()
     
-    # Build prompt file path - simplified naming (no language since Core LLM handles that)
+    # Build prompt file path 
     prompt_path = os.path.join('mcp_server', 'prompts', f'us_{session_type.lower()}.txt')
 
     try:
@@ -43,39 +42,36 @@ def get_wealth_categories():
     """Define the three wealth categories for internal LLM use"""
     return {
         "concentrated_equity": {
-            "description": "Ownership in corporations/assets",
-            "examples": ["Startup founders/CEOs", "Corporate executives with equity", "Real estate investors", "Business owners"],
-            "typical_concerns": ["Diversification", "Liquidity planning", "Tax optimization", "Exit strategies"]
+            "description": "Wealth tied to restricted/illiquid assets >30% of net worth",
+            "personas": ["startup_founder", "corporate_executive", "business_owner", "direct_investor"],
+            "key_test": "Cannot easily diversify due to restrictions + >30% concentration"
         },
         "partnership_interest": {
-            "description": "Partners in professional practices/firms", 
-            "examples": ["Law firm partners", "Medical practice owners", "Dentists", "PE/HF principals", "Accounting firm partners"],
-            "typical_concerns": ["Distribution planning", "Succession planning", "Tax optimization", "Practice valuation"]
+            "description": "Partners in professional practices/firms with profit sharing", 
+            "personas": ["professional_services", "financial_partnership", "large_professional"],
+            "key_test": "Ownership stake + profit sharing in partnership structure"
         },
         "general_wealth": {
-            "description": "Traditional W-2 employees and diversified wealth",
-            "examples": ["Engineers", "Teachers", "Managers", "Retirees", "Trust beneficiaries", "Most corporate employees"],
-            "typical_concerns": ["401k optimization", "Emergency funds", "Tax efficiency", "Retirement planning"]
+            "description": "Traditional employees and diversified wealth builders",
+            "personas": ["w2_employee", "retiree", "trust_beneficiary", "recent_windfall"],
+            "key_test": "Standard employment or diversified assets (default category)"
         }
     }
 
 def get_us_session_flow(session_type, user_context):
-    """Define conversation flow for US users with three-category system"""
+    """Define conversation flow for US users - clean onboarding approach"""
     
     flows = {
         'session1': [
-            "PHASE 1: Alter-ego introduction and rapport building",
-            "PHASE 2: Source of wealth discovery and internal categorization",
-            "PHASE 3: Family structure discovery (only after wealth category is determined)", 
-            "PHASE 4: Wealth-category-appropriate follow-up questions",
-            "PHASE 5: Summarize understanding and set foundation for future conversations"
+            "PHASE 1: Natural introduction - Quin getting to know the user",
+            "PHASE 2: Source of wealth discovery (category + persona identification)",
+            "PHASE 3: Basic family structure (marital status + children)", 
+            "PHASE 4: Profile complete - route to specialized conversation"
         ],
         'session2': [
-            "Review stored alter-ego relationship and wealth category",
-            "Dive deeper into category-specific financial areas",
-            "Provide personalized insights based on their wealth type",
-            "Build on previous conversation and stored facts",
-            "Continue developing the alter-ego relationship"
+            "Review stored profile information",
+            "Provide specialized guidance based on wealth category and persona",
+            "Build on previous conversations"
         ]
     }
     
@@ -86,42 +82,39 @@ def get_us_conversation_flow(session_type):
     
     flows = {
         'session1': [
-            "Required alter-ego introduction explaining Quin's role",
-            "Natural source of wealth discovery through work conversation",
-            "Internal wealth categorization (user doesn't see categories)", 
-            "Family basics after wealth category is clear",
-            "Category-appropriate follow-up questions",
-            "Relationship summary and foundation setting"
+            "Open with required introduction script",
+            "Ask about work/income source naturally",
+            "Listen for category signals - assume General Wealth unless proven otherwise", 
+            "Clarify only if concentration signals detected",
+            "Store wealth category + persona when determined",
+            "Ask about family structure (married/single + children)",
+            "Complete profile and transition to specialized conversation"
         ],
         'session2': [
-            "Acknowledge previous alter-ego relationship",
-            "Review stored wealth category and family facts",
-            "Analyze category-specific opportunities and concerns",
-            "Provide personalized insights as their financial alter-ego",
-            "Deepen the ongoing relationship"
+            "Acknowledge existing relationship",
+            "Reference stored profile data",
+            "Provide category-specific insights and guidance"
         ]
     }
     
     return flows.get(session_type, flows['session1'])
 
 def get_us_question_priorities(session_type):
-    """Get priority questions for US users with three-category focus"""
+    """Get priority questions for US users - onboarding focused"""
     
     questions = {
         'session1': [
-            "Required opening: Explain alter-ego concept with exact script",
-            "What do you do for work? (for wealth categorization)",
-            "Simple follow-up if needed to categorize wealth type", 
-            "Are you married or single? (only after wealth category stored)",
-            "Do you have children? (only after wealth category stored)",
-            "Wealth-category-appropriate follow-up questions"
+            "Required opening: Use exact introduction script from prompt",
+            "What do you do for a living? (natural work conversation)",
+            "Clarification if needed: wealth concentration or partnership status", 
+            "Are you married or single? (only after SOW stored)",
+            "Do you have children? (only after SOW stored)",
+            "Profile complete - no additional questions in Session 1"
         ],
         'session2': [
-            "Acknowledge the alter-ego relationship from session 1",
-            "Review wealth category and family situation from stored facts",
-            "What's changed since we last talked?",
-            "What financial area feels most important to focus on?",
-            "Category-specific deeper questions"
+            "Reference profile: wealth category, persona, family status",
+            "What financial topics are most important to you?",
+            "Category-specific guidance and insights"
         ]
     }
     
@@ -131,8 +124,8 @@ def get_us_recommended_tools(session_type):
     """Get recommended tools for US conversations"""
     
     tools = {
-        'session1': ['store_user_fact', 'getSavingsRecommendation', 'getInstitutions'],
-        'session2': ['store_user_fact', 'getSavingsRecommendation', 'getInstitutions']
+        'session1': ['store_user_fact'],  # Only profile storage for onboarding
+        'session2': ['store_user_fact', 'getSavingsRecommendation', 'getInstitutions']  # Full tools for guidance
     }
     
     return tools.get(session_type, tools['session1'])
@@ -159,8 +152,8 @@ def get_country_financial_context(country):
         # Enhance context with wealth category information
         context['wealth_system'] = {
             "categories": ["concentrated_equity", "partnership_interest", "general_wealth"],
-            "approach": "Quick assessment through natural work conversation",
-            "accuracy_target": "85-90% - user can correct if needed"
+            "approach": "Assume General Wealth, prove out if concentration signals detected",
+            "threshold": "30% concentration + liquidity restrictions for concentrated equity"
         }
         
         return context
@@ -180,27 +173,27 @@ def get_default_context():
             }
         },
         "conversation_approach": {
-            "style": "Alter-ego relationship - AI version of user with financial expertise",
+            "style": "Natural conversation to learn about the user",
             "privacy": "Ask for approximate numbers only",
-            "relationship": "Learning to become their personalized financial alter-ego"
+            "purpose": "Collect basic profile to enable personalized guidance"
         },
         "wealth_system": {
             "categories": ["concentrated_equity", "partnership_interest", "general_wealth"],
-            "approach": "Quick assessment through natural work conversation", 
-            "accuracy_target": "85-90% - user can correct if needed"
+            "approach": "Assume General Wealth, prove out if concentration signals detected", 
+            "threshold": "30% concentration + liquidity restrictions for concentrated equity"
         }
     }
 
 def get_default_instructions():
-    """Fallback instructions with alter-ego approach"""
+    """Fallback instructions with clean onboarding approach"""
     return {
-        "instructions": "You are Quin, learning to become this user's financial alter-ego. Use the three-category wealth system to understand their situation through natural conversation.",
+        "instructions": "You are Quin. Have a natural conversation to learn about this user's basic profile so you can provide personalized financial guidance.",
         "financial_context": get_default_context(),
-        "session_flow": ["Alter-ego introduction", "Wealth categorization", "Family basics", "Category-appropriate questions"],
+        "session_flow": ["Introduction", "Work/wealth discovery", "Family basics", "Profile complete"],
         "country": "US",
         "session_type": "session1",
-        "conversation_flow": ["Explain alter-ego concept", "What do you do for work?", "Family situation", "Build relationship"],
-        "question_priorities": ["Alter-ego intro", "Work/wealth discovery", "Family", "Relationship building"],
-        "tools_to_use": ["store_user_fact", "getSavingsRecommendation"],
+        "conversation_flow": ["Natural introduction", "What do you do for work?", "Family situation", "Complete profile"],
+        "question_priorities": ["Opening script", "Work conversation", "Family questions", "Completion"],
+        "tools_to_use": ["store_user_fact"],
         "wealth_categories": get_wealth_categories()
     }
