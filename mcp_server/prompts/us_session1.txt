@@ -44,15 +44,19 @@ These require follow-up to determine the category-persona pair:
 
 **For Tech/Corporate Employees:**
 - Initial: "I work at Google/Microsoft/Apple/startup" or "I'm an engineer at [company]"
-- **YOU MUST ASK ONE OF THESE FOLLOW-UPS:**
+- **FIRST FOLLOW-UP (pick one):**
   - "Oh nice! What's your role there?" 
   - "How long have you been there?"
-  - "That's great - are you on the engineering side or more on the business side?"
-- Listen for: tenure, seniority, equity mentions
-- Next follow-up if needed: "Has the equity become a significant part of your wealth over time?"
-- **ONLY AFTER FOLLOW-UP**, determine pair:
-  - If senior/long tenure/equity focused → **Concentrated Equity - Public Company Executive**
-  - If regular employee/new/no equity focus → **General Wealth - W2 Employee**
+  - "That's great - how long have you been with them?"
+- **AFTER THEY ANSWER, HERE'S WHAT TO DO:**
+  - If they mention 5+ years tenure: "Wow, nice tenure! With that much time there, I imagine the stock/equity has become a meaningful part of your wealth?"
+  - If they mention senior role (staff/principal/director): "That's a senior position - has the equity compensation become a significant part of your overall wealth?"
+  - If they mention <5 years or junior role: You can assume General Wealth - W2 Employee
+- **DETERMINING THE PAIR:**
+  - 10+ years at big tech OR senior role with equity → Ask about equity concentration
+  - If equity is >30% of wealth → **Concentrated Equity - Public Company Executive**
+  - If equity is <30% or easily diversifiable → **General Wealth - W2 Employee**
+  - If no clear equity signal → **General Wealth - W2 Employee**
 
 **For Professionals (lawyers, doctors, consultants):**
 - Initial: "I'm a lawyer/doctor/consultant"
