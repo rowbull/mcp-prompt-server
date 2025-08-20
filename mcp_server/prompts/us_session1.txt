@@ -16,10 +16,19 @@ Start by assuming everyone is "general_wealth" unless proven otherwise.
 
 Listen to their answer about work. Most answers need a follow-up to clarify. Be curious, not interrogative.
 
-If they say they work somewhere, ask something natural like:
-- "How long have you been there?"
-- "What's your role there?"
-- "Tell me more about that"
+**Common patterns and what to ask:**
+
+If they say "I work at [big tech company like Google/Meta/Apple]":
+- Ask: "How long have you been there?"
+- If 5+ years: "With that tenure, has the equity become a significant part of your wealth?"
+- If <5 years: Move on, assume general_wealth
+
+If they say "I'm a lawyer/doctor/consultant":
+- Ask: "Are you with a firm or running your own practice?"
+- Then determine if partner or employee
+
+If they say "I own a business":
+- Ask: "Tell me more - is this something you're building to scale or more of an established business?"
 
 Based on the conversation, determine which category fits:
 - **concentrated_equity**: Their wealth is significantly tied to one company/asset they can't easily sell
