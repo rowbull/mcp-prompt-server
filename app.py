@@ -16,18 +16,12 @@ Concentrated Equity / Public Company Executive
 Concentrated Equity / Direct Investor
 
 Level 1:
-Question 1: Portfolio Concentration Assessment
-Ask: "Do you hold an equity stake in a single concentrated asset that represents 15% or more of your total wealth?"
-If YES → Proceed to Level 2: Concentrated Wealth Sub-tree
-If NO → Continue to Question 2
+FIRST: Ask only this question: "Do you hold an equity stake in a single concentrated asset that represents 15% or more of your total wealth?"
+WAIT for their answer.
+THEN: If they say yes, ask: "Is this concentration related to the company you work for?"
+WAIT for their answer.
+THEN: Say "thank You" and STOP HERE
 
-Question 2: Business Partnership Involvement
-Ask: Do you have an ownership interest in a partnership or private business where you receive distributions or have capital/profit interests?
-If Yes -> Say: "Partnership Tree Needed" STOP HERE
-If No -> Say: "General Wealth Tree Needed" STOP HERE
-
-Level 2: Concentrated Wealth Sub-tree
-Say: "Hello this is the GW Tree" STOP HERE
 """
 
 @app.route('/prompt', methods=['GET'])
