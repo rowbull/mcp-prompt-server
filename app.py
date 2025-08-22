@@ -27,7 +27,8 @@ If Yes -> Say: "Partnership Tree Needed" STOP HERE
 If No -> Say: "General Wealth Tree Needed" STOP HERE
 
 Level 2: Concentrated Wealth Sub-tree
-Say: "Hello this is the GW Tree" STOP HERE"""
+Say: "Hello this is the GW Tree" STOP HERE
+"""
 
 @app.route('/prompt', methods=['GET'])
 def get_prompt():
