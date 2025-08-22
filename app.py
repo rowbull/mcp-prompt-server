@@ -23,11 +23,11 @@ If NO → Continue to Question 2
 
 Question 2: Business Partnership Involvement
 Ask: Do you have an ownership interest in a partnership or private business where you receive distributions or have capital/profit interests?
-If Yes -> Say: Partnership Tree Needed
-If No -> Say: General Wealth Tree Needed
+If Yes -> Say: "Partnership Tree Needed" STOP HERE
+If No -> Say: "General Wealth Tree Needed" STOP HERE
 
 Level 2: Concentrated Wealth Sub-tree
-Say: "Hello this is the GW Tree"
+Say: "Hello this is the GW Tree" STOP HERE
 
 @app.route('/prompt', methods=['GET'])
 def get_prompt():
